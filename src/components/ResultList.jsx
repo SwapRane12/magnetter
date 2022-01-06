@@ -1,9 +1,15 @@
+
 import ResultListItem from "./ResultListItem"
 
-export default function ResultList() {
+
+export default function ResultList({ list }) {
+
+
+
 	return (
 		<div className="mt-4 w-full " >
-			<ResultListItem />
+			{list.map((item, index) => <ResultListItem item={item} key={index} />)}
+
 		</div>
 	)
 }

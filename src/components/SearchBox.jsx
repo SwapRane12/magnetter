@@ -1,4 +1,14 @@
+import { useRouter } from "next/router"
+import { useState } from "react"
+
 export default function SearchBox({ }) {
+	const router = useRouter()
+	const [keyword, setKeyword] = useState('')
+	const handleSearch = (e) => {
+
+		router.push(`/results/${keyword}`)
+	}
+
 	return (
 
 
@@ -7,11 +17,16 @@ export default function SearchBox({ }) {
 				className=" flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
 
 
-				<form className="space-y-6">
+				<form onSubmit={(e) => {
+					e.preventDefault()
+					handleSearch()
+				}} className="space-y-6">
 					<div>
 						<div className="mt-1">
 							<input
 								id="search" name="search" type="text" required=""
+								value={keyword}
+								onChange={(e) => setKeyword(e.target.value)}
 								placeholder="Search Keyword"
 								className="  ring-2 ring-offset-gray-300 block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out  transform  rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-700" />
 						</div>
